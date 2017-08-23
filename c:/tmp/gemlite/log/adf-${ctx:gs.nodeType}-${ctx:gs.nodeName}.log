@@ -1,0 +1,91 @@
+[2017-08-22 13:14:16,305 INFO ADFConfigHelper.dump] 
+=======================ADF config==============================
+client.multiple.user.enabled=false	//CLINET_MULTIPLE_USER
+gs.bind.ip=127.0.0.1	//BINDIP
+gs.deploy=c:/tmp/gemlite/deploy
+gs.locators=liyuan-ASUS[15000]	//LOCATORS
+naming.server=liyuan-ASUS[14000]	//NAMING_SERVER
+security.auth.mode=remote	//AUTH_MODE
+===============================================================
+LOCATOR1=liyuan-ASUS
+PORT1=15000
+client.pool.free-connection-timeout=20000	//CLIENT_FREE_TIMEOUT
+client.pool.max-connections=32	//CLIENT_POOL_MAX
+client.pool.min-connections=1	//CLIENT_POOL_MIN
+client.pool.pr-singlehop=true	//CLIENT_POOL_SINGLEHOP
+client.pool.retry-attemps=2	//CLIENT_POOL_RETRY
+client.pool.timeout=10000	//CLIENT_POOL_TIMEOUT
+client.sending.server.mode=false	//CLIENT_SENDING_SERVER_MODE
+cluster.distributed.system.id=-1	//CLUSTER_DISTRIBUTE_SYSTEM_ID
+cluster.remote.distributed.system.id.index0=1
+cluster.remote.distributed.system.id.index1=2
+cluster.remote.locators=	//CLUSTER_REMOTE_LOCATORS
+federal.manager.store=master
+gateway.queue.batch-size=50
+gateway.queue.dispatcher-threads=4
+gateway.queue.max-mem=50
+gateway.queue.time-interval=500
+gateway.receiver.maximum-time-between-pings=60000
+gemfire.ALLOW_PERSISTENT_TRANSACTIONS=true
+grid.meta.oplog.max=5	//GRID_OPLOG_META
+grid.meta.visible=true	//GRID_META_VISIBLE
+grid.queue.oplog.max=1024	//GRID_OPLOG_QUEUE
+grid.status-thread.interval=30	//GRID_STATUS_THREAD_INTERVAL
+gs.block-queue.size=100000	//ASYNC_BQUEUE_SIZE
+gs.block-thread.size=4	//ASYNC_THREAD_SIZE
+gs.critical.heap.percentage=99.9
+gs.date.patterns=yyyyMMdd,yyyy-MM-dd HH:mm:ss	//DB_TYPE
+gs.env=dev	//GS_ENV
+gs.eviction.heap.percentage=85
+gs.grid.as.master=true	//AS_MASTER_GRID
+gs.home=c:/tmp/gemlite	//GS_HOME
+gs.max-connections=800
+gs.queue.batch-size=500	//ASYNC_QUEUE_BATCH_SIZE
+gs.queue.dispatcher-threads=8	//ASYNC_QUEUE_DISP_THREADS
+gs.queue.max-mem=50
+gs.queue.time-interval=500	//ASYNC_QUEUE_INTERVAL
+gs.router.memory=16
+gs.router.threshold=100
+gs.temporal.unit=DAYS	//TEMPORAL_UNIT
+gs.version=8.1.0	//GS_VERSION
+gs.work=c:/tmp/gemlite/work	//GS_WORK
+indexer.lucene.batch-size=500	//LUCENE_BATCHSIZE
+indexer.lucene.cache.index.bucket=113
+indexer.lucene.cache.prefetch-count=5	//LUCENE_PREFETCH_COUNT
+indexer.lucene.cache.timeout=6
+indexer.lucene.directory=MMAP	//LUCENE_DIRECTORY
+indexer.lucene.oplog-size=500	//LUCENE_OPLOG
+indexer.lucene.page-size=100	//LUCENE_PAGESIZE
+indexer.lucene.statistic=true	//LUCENE_STATISTIC
+indexer.lucene.time-interval=10000	//LUCENE_INTERVAL
+indexer.lucene.windowedsending.buffer_size=1048576	//LUCENE_SENDING_BUFFER_SIZE
+indexer.lucene.windowedsending.window_size=10	//LUCENE_SENDING_WINDOW_SIZE
+jmx.manager.port=1088	//JMX_MANAGER_PORT
+master.client.multiple.user.enabled=true	//MASTER_CLINET_MULTIPLE_USER
+master.client.pool.free-connection-timeout=10000	//MASTER_CLIENT_FREE_TIMEOUT
+master.client.pool.max-connections=32	//MASTER_CLIENT_POOL_MAX
+master.client.pool.min-connections=1	//MASTER_CLIENT_POOL_MIN
+master.client.pool.retry-attemps=2	//MASTER_CLIENT_POOL_RETRY
+master.client.pool.timeout=10000	//MASTER_CLIENT_POOL_TIMEOUT
+security.grid.authenticate.enabled=false	//GRID_AUTHENTICATION_ENABLED
+security.sync.rate.hours=24	//SECURITY_SYNC_RATE_HOURS
+security.sync.single.interval=0	//SECURITY_SYNC_SINGLE_INTERVAL
+system.gridname=locatTest	//SYSTEM_GRIDNAME
+system.name=localGroup	//SYSTEM_NAME
+system.wan.area=NA	//SYSTEM_WAN_AREA
+test.grid=grid
+test.group=_default
+test.passwd=QL0AFWMIX8NRZTKeof9cXsvbvu8=
+test.user=admin
+===============================================================
+[2017-08-22 13:14:17,605 INFO ApplicationStartedListener.onApplicationEvent] application context started event invoked.
+[2017-08-22 13:14:17,656 INFO ADFHybridCacheConnection.connect] Connecting to grid. GridInfo:GridInfo [gridName=grid_master, defaultGroup=null, locators=liyuan-ASUS[14000], connected=false, jmxAddress=null, jmxManagerPort=0, isMaster=false, wanArea=null] ....
+[2017-08-22 13:14:23,515 INFO TypeRegistryExt.upgradeClientTypeRegistration] Extend default TypeRegistry to adapt muti-grid pdx.
+[2017-08-22 13:14:23,516 INFO SingleHopClientThreadPoolExecutor.upgradeSingleHopClientThreadPoolExecutor] Extend default SingleHopClientExecutor to adapt muti-grid.
+[2017-08-22 13:14:23,712 INFO ADFHybridCacheManager.findConnection] ADF connect to grid liyuan-ASUS[14000] success.
+[2017-08-22 13:14:23,713 INFO ADFConfigHelper.setProperty] Set master.grid.name=control	//MASTER_GRID_NAME
+[2017-08-22 13:14:23,713 INFO InternalBeanPosterProcessor.onApplicationEvent] application context initial finished.
+[2017-08-22 13:14:23,716 INFO FederalHelper.connectCm] Using GF as Master,naming-server:liyuan-ASUS[14000]
+[2017-08-22 13:14:23,802 INFO GridConnectionImpl.connect] Connecting to grid. GridInfo:GridInfo [gridName=grid, defaultGroup=grid, locators=liyuan-ASUS[15000], connected=false, jmxAddress=127.0.0.1, jmxManagerPort=1091, isMaster=false, wanArea=NA] ....
+[2017-08-22 13:14:23,841 INFO GridConnectionImpl.connect] Connect to grid successful. GridInfo:GridInfo [gridName=grid, defaultGroup=grid, locators=liyuan-ASUS[15000], connected=true, jmxAddress=127.0.0.1, jmxManagerPort=1091, isMaster=false, wanArea=NA]
+[2017-08-22 13:14:23,933 INFO ClientRegionCreatorImpl.createAllClientRegions] Create proxy regions for grid:grid , regions:[com.jnj.adf.grid.data.RegionDefine@6403a4a5, com.jnj.adf.grid.data.RegionDefine@3dbd7107, com.jnj.adf.grid.data.RegionDefine@4a6c0f38, com.jnj.adf.grid.data.RegionDefine@5f8a02cf]

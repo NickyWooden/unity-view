@@ -1,0 +1,212 @@
+[2017-08-22 13:14:23,217 INFO ?.] 
+---------------------------------------------------------------------------
+
+  Copyright (C) 1997-2015 Pivotal Software, Inc. All rights reserved. This
+  product is protected by U.S. and international copyright and intellectual
+  property laws. Pivotal products are covered by one or more patents listed
+  at http://www.pivotal.io/patents.  Pivotal is a registered trademark
+  of trademark of Pivotal Software, Inc. in the United States and/or other
+  jurisdictions.  All other marks and names mentioned herein may be
+  trademarks of their respective companies.
+
+---------------------------------------------------------------------------
+Java version:   8.2.0 build 17919 08/19/2015 14:58:51 PDT javac 1.7.0_79
+Native version: native code unavailable
+Source revision: a58a25d2be7eab751794e9cc78ff04a03bb09a65
+Source repository: gemfire82_dev
+Running on: /10.42.0.1, 4 cpu(s), amd64 Linux 4.10.0-32-generic
+Process ID: 19896
+User: liyuan
+Current dir: /home/liyuan/STS-workspace/unity-view
+Home dir: /home/liyuan
+Command Line Parameters:
+  -Dfile.encoding=UTF-8
+Class Path:
+  /home/liyuan/STS-workspace/unity-view/target/classes
+  /opt/sts-bundle/repository/org/springframework/spring-core/4.1.8.RELEASE/spring-core-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+  /opt/sts-bundle/repository/com/jnj/adf/adf-core/0.3.02/adf-core-0.3.02.jar
+  /opt/sts-bundle/repository/com/jnj/adf/adf-server/0.3.02/adf-server-0.3.02.jar
+  /opt/sts-bundle/repository/org/mvel/mvel2/2.3.1.Final/mvel2-2.3.1.Final.jar
+  /opt/sts-bundle/repository/org/ow2/asm/asm-all/5.0.3/asm-all-5.0.3.jar
+  /opt/sts-bundle/repository/commons-beanutils/commons-beanutils/1.9.1/commons-beanutils-1.9.1.jar
+  /opt/sts-bundle/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar
+  /opt/sts-bundle/repository/org/apache/commons/commons-compress/1.4.1/commons-compress-1.4.1.jar
+  /opt/sts-bundle/repository/org/tukaani/xz/1.0/xz-1.0.jar
+  /opt/sts-bundle/repository/org/springframework/spring-web/4.1.8.RELEASE/spring-web-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/data/spring-data-gemfire/1.7.1.RELEASE/spring-data-gemfire-1.7.1.RELEASE.jar
+  /opt/sts-bundle/repository/org/slf4j/jcl-over-slf4j/1.7.12/jcl-over-slf4j-1.7.12.jar
+  /opt/sts-bundle/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar
+  /opt/sts-bundle/repository/org/aspectj/aspectjweaver/1.8.5/aspectjweaver-1.8.5.jar
+  /opt/sts-bundle/repository/com/gemstone/gemfire/gemfire/8.2.0-001/gemfire-8.2.0-001.jar
+  /opt/sts-bundle/repository/org/apache/logging/log4j/log4j-api/2.1/log4j-api-2.1.jar
+  /opt/sts-bundle/repository/org/apache/logging/log4j/log4j-core/2.1/log4j-core-2.1.jar
+  /opt/sts-bundle/repository/xom/xom/1.2.5/xom-1.2.5.jar
+  /opt/sts-bundle/repository/org/slf4j/slf4j-log4j12/1.7.7/slf4j-log4j12-1.7.7.jar
+  /opt/sts-bundle/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar
+  /opt/sts-bundle/repository/com/lmax/disruptor/3.3.4/disruptor-3.3.4.jar
+  /opt/sts-bundle/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar
+  /opt/sts-bundle/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar
+  /opt/sts-bundle/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar
+  /opt/sts-bundle/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar
+  /opt/sts-bundle/repository/com/rabbitmq/amqp-client/2.8.1/amqp-client-2.8.1.jar
+  /opt/sts-bundle/repository/commons-io/commons-io/2.4/commons-io-2.4.jar
+  /opt/sts-bundle/repository/commons-pool/commons-pool/1.6/commons-pool-1.6.jar
+  /opt/sts-bundle/repository/args4j/args4j/2.0.16/args4j-2.0.16.jar
+  /opt/sts-bundle/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar
+  /opt/sts-bundle/repository/cglib/cglib/3.1/cglib-3.1.jar
+  /opt/sts-bundle/repository/org/springframework/data/spring-data-jpa/1.9.1.RELEASE/spring-data-jpa-1.9.1.RELEASE.jar
+  /opt/sts-bundle/repository/org/aspectj/aspectjrt/1.8.7/aspectjrt-1.8.7.jar
+  /opt/sts-bundle/repository/org/antlr/antlr-complete/3.5.2/antlr-complete-3.5.2.jar
+  /opt/sts-bundle/repository/org/antlr/antlr/3.5.2/antlr-3.5.2.jar
+  /opt/sts-bundle/repository/org/antlr/ST4/4.0.8/ST4-4.0.8.jar
+  /opt/sts-bundle/repository/org/antlr/gunit/3.5.2/gunit-3.5.2.jar
+  /opt/sts-bundle/repository/org/antlr/stringtemplate/3.2.1/stringtemplate-3.2.1.jar
+  /opt/sts-bundle/repository/mx4j/mx4j-remote/3.0.1/mx4j-remote-3.0.1.jar
+  /opt/sts-bundle/repository/mx4j/mx4j-tools/3.0.1/mx4j-tools-3.0.1.jar
+  /opt/sts-bundle/repository/commons-fileupload/commons-fileupload/1.3.1/commons-fileupload-1.3.1.jar
+  /opt/sts-bundle/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/core/jackson-core/2.2.3/jackson-core-2.2.3.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/core/jackson-databind/2.2.3/jackson-databind-2.2.3.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/core/jackson-annotations/2.2.3/jackson-annotations-2.2.3.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.2.3/jackson-jaxrs-json-provider-2.2.3.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.2.3/jackson-jaxrs-base-2.2.3.jar
+  /opt/sts-bundle/repository/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.2.3/jackson-module-jaxb-annotations-2.2.3.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-http/9.2.3.v20140905/jetty-http-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-io/9.2.3.v20140905/jetty-io-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-security/9.2.3.v20140905/jetty-security-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-server/9.2.3.v20140905/jetty-server-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-servlet/9.2.3.v20140905/jetty-servlet-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-util/9.2.3.v20140905/jetty-util-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-webapp/9.2.3.v20140905/jetty-webapp-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/org/eclipse/jetty/jetty-xml/9.2.3.v20140905/jetty-xml-9.2.3.v20140905.jar
+  /opt/sts-bundle/repository/ch/ethz/ganymed/ganymed-ssh2/262/ganymed-ssh2-262.jar
+  /opt/sts-bundle/repository/org/springframework/spring-beans/4.1.8.RELEASE/spring-beans-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-context/4.1.8.RELEASE/spring-context-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-expression/4.1.8.RELEASE/spring-expression-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-context-support/4.1.8.RELEASE/spring-context-support-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-orm/4.1.8.RELEASE/spring-orm-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-jdbc/4.1.8.RELEASE/spring-jdbc-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/data/spring-data-commons/1.11.1.RELEASE/spring-data-commons-1.11.1.RELEASE.jar
+  /opt/sts-bundle/repository/org/javassist/javassist/3.18.2-GA/javassist-3.18.2-GA.jar
+  /opt/sts-bundle/repository/org/springframework/ldap/spring-ldap-core/2.0.4.RELEASE/spring-ldap-core-2.0.4.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/spring-aop/4.1.8.RELEASE/spring-aop-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar
+  /opt/sts-bundle/repository/org/springframework/spring-tx/4.1.8.RELEASE/spring-tx-4.1.8.RELEASE.jar
+  /opt/sts-bundle/repository/joda-time/joda-time/2.9.2/joda-time-2.9.2.jar
+  /opt/sts-bundle/repository/jaxen/jaxen/1.1.6/jaxen-1.1.6.jar
+  /opt/sts-bundle/repository/org/springframework/batch/spring-batch-core/3.0.5.RELEASE/spring-batch-core-3.0.5.RELEASE.jar
+  /opt/sts-bundle/repository/com/ibm/jbatch/com.ibm.jbatch-tck-spi/1.0/com.ibm.jbatch-tck-spi-1.0.jar
+  /opt/sts-bundle/repository/javax/batch/javax.batch-api/1.0/javax.batch-api-1.0.jar
+  /opt/sts-bundle/repository/org/codehaus/jettison/jettison/1.2/jettison-1.2.jar
+  /opt/sts-bundle/repository/org/springframework/batch/spring-batch-infrastructure/3.0.5.RELEASE/spring-batch-infrastructure-3.0.5.RELEASE.jar
+  /opt/sts-bundle/repository/org/springframework/retry/spring-retry/1.1.0.RELEASE/spring-retry-1.1.0.RELEASE.jar
+  /opt/sts-bundle/repository/org/apache/directory/api/api-all/1.0.0-M32/api-all-1.0.0-M32.jar
+  /opt/sts-bundle/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.xpp3/1.1.4c_6/org.apache.servicemix.bundles.xpp3-1.1.4c_6.jar
+  /opt/sts-bundle/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.dom4j/1.6.1_5/org.apache.servicemix.bundles.dom4j-1.6.1_5.jar
+  /opt/sts-bundle/repository/org/apache/mina/mina-core/2.0.9/mina-core-2.0.9.jar
+  /opt/sts-bundle/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.antlr/2.7.7_5/org.apache.servicemix.bundles.antlr-2.7.7_5.jar
+  /opt/sts-bundle/repository/com/google/guava/guava/18.0/guava-18.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-core/6.2.0/lucene-core-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-analyzers-common/6.2.0/lucene-analyzers-common-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-queryparser/6.2.0/lucene-queryparser-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-sandbox/6.2.0/lucene-sandbox-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-queries/6.2.0/lucene-queries-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-highlighter/6.2.0/lucene-highlighter-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-memory/6.2.0/lucene-memory-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-codecs/6.2.0/lucene-codecs-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-spatial/6.2.0/lucene-spatial-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-suggest/6.2.0/lucene-suggest-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-misc/6.2.0/lucene-misc-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-backward-codecs/6.2.0/lucene-backward-codecs-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-join/6.2.0/lucene-join-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-grouping/6.2.0/lucene-grouping-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-facet/6.2.0/lucene-facet-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-classification/6.2.0/lucene-classification-6.2.0.jar
+  /opt/sts-bundle/repository/org/apache/lucene/lucene-spatial3d/6.2.0/lucene-spatial3d-6.2.0.jar
+  /opt/sts-bundle/repository/org/kie/kie-api/6.4.0.Final/kie-api-6.4.0.Final.jar
+  /opt/sts-bundle/repository/org/kie/kie-internal/6.4.0.Final/kie-internal-6.4.0.Final.jar
+  /opt/sts-bundle/repository/org/drools/drools-compiler/6.4.0.CR1/drools-compiler-6.4.0.CR1.jar
+  /opt/sts-bundle/repository/org/antlr/antlr-runtime/3.5/antlr-runtime-3.5.jar
+  /opt/sts-bundle/repository/org/eclipse/jdt/core/compiler/ecj/4.4.2/ecj-4.4.2.jar
+  /opt/sts-bundle/repository/com/thoughtworks/xstream/xstream/1.4.7/xstream-1.4.7.jar
+  /opt/sts-bundle/repository/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar
+  /opt/sts-bundle/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar
+  /opt/sts-bundle/repository/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.jar
+  /opt/sts-bundle/repository/org/drools/drools-core/6.4.0.CR1/drools-core-6.4.0.CR1.jar
+  /opt/sts-bundle/repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar
+Library Path:
+  /usr/java/packages/lib/amd64
+  /usr/lib64
+  /lib64
+  /lib
+  /usr/lib
+System Properties:
+    GS_ENV = dev
+    Log4jContextSelector = org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+    awt.toolkit = sun.awt.X11.XToolkit
+    file.encoding = UTF-8
+    file.encoding.pkg = sun.io
+    file.separator = /
+    gemfire.ALLOW_PERSISTENT_TRANSACTIONS = true
+    gemfire.sys.security-command-interceptor = ********
+    gemfire.sys.security-jmx-client-auth-init = ********
+    gemfire.sys.security-jmx-resource-auth-accessor = ********
+    gemfire.sys.security-jmx-resource-authenticator = ********
+    gemfire.sys.security-service-account-password = ********
+    gemfire.sys.security-service-account-username = ********
+    gs.env = dev
+    java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+    java.awt.printerjob = sun.print.PSPrinterJob
+    java.class.version = 52.0
+    java.endorsed.dirs = /opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/endorsed
+    java.ext.dirs = /opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/ext:/usr/java/packages/lib/ext
+    java.home = /opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre
+    java.io.tmpdir = /tmp
+    java.runtime.name = Java(TM) SE Runtime Environment
+    java.runtime.version = 1.8.0_131-b11
+    java.specification.name = Java Platform API Specification
+    java.specification.vendor = Oracle Corporation
+    java.specification.version = 1.8
+    java.vendor = Oracle Corporation
+    java.vendor.url = http://java.oracle.com/
+    java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+    java.version = 1.8.0_131
+    java.vm.info = mixed mode
+    java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+    java.vm.specification.name = Java Virtual Machine Specification
+    java.vm.specification.vendor = Oracle Corporation
+    java.vm.specification.version = 1.8
+    java.vm.vendor = Oracle Corporation
+    java.vm.version = 25.131-b11
+    line.separator = 
+
+    os.version = 4.10.0-32-generic
+    p2p.useSSL = false
+    path.separator = :
+    sun.arch.data.model = 64
+    sun.boot.class.path = /opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/resources.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/rt.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/sunrsasign.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/jsse.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/jce.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/charsets.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/jfr.jar:/opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/classes
+    sun.boot.library.path = /opt/sts-bundle/sts-3.7.2.RELEASE/jre/jre/lib/amd64
+    sun.cpu.endian = little
+    sun.cpu.isalist = 
+    sun.desktop = gnome
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.java.command = com.jnj.unity.unity_views.deploy.MentorProductLotViewDeploy
+    sun.java.launcher = SUN_STANDARD
+    sun.jnu.encoding = UTF-8
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    sun.nio.ch.bugLevel = 
+    sun.os.patch.level = unknown
+    user.country = CN
+    user.language = zh
+    user.timezone = Asia/Shanghai
+Log4J 2 Configuration:
+    Using log4j configuration found in classpath: 'jar:file:/opt/sts-bundle/repository/com/jnj/adf/adf-core/0.3.02/adf-core-0.3.02.jar!/log4j2.xml'
+---------------------------------------------------------------------------
+
+[2017-08-22 13:14:23,222 INFO ?.] Running in local mode since mcast-port was 0 and locators was empty.
+[2017-08-22 13:14:23,453 INFO ?.] Updating membership port.  Port changed from 0 to 53,106.
+[2017-08-22 13:14:23,499 INFO PoolImpl.start] Pool DEFAULT started with multiuser-authentication=true
+[2017-08-22 13:14:23,506 INFO CacheClientUpdater.processMessages] Cache Client Updater Thread  on 127.0.0.1(10.42.0.1-s-s1:12613)<v1>:29218 port 39117 (127.0.0.1:39117) : ready to process messages.
+[2017-08-22 13:14:23,839 INFO CacheClientUpdater.processMessages] Cache Client Updater Thread  on 127.0.0.1(10.42.0.1-s-s1:17041)<v1>:6300 port 36723 (127.0.0.1:36723) : ready to process messages.
+[2017-08-22 13:14:23,839 INFO PoolImpl.start] Pool grid/pool started with multiuser-authentication=false

@@ -1,0 +1,246 @@
+/*
+ * Copyright 2015 Red Hat, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * updateAuthor:sli172
+ * updateDate:2017-01-06
+ * 
+*/
+
+package com.jnj.unity.views;
+
+import java.util.*;
+import java.util.Map.Entry;
+import com.jnj.adf.grid.manager.*;
+import com.jnj.adf.client.api.*;
+import com.jnj.adf.client.api.remote.*;
+import com.jnj.adf.grid.utils.*;
+import com.jnj.adf.grid.view.*;
+import com.jnj.adf.grid.view.builder.*;
+import com.jnj.adf.grid.view.common.*;
+import com.jnj.adf.grid.data.raw.*;
+import com.jnj.adf.client.api.query.QueryHelper;
+import com.jnj.adf.grid.utils.LogUtil;
+import com.jnj.adf.grid.utils.DateUtil;
+import org.apache.commons.lang3.StringUtils;
+
+// productlot匹配规则
+rule "product lot"	
+when
+	ViewRuleProcessOneMessage (      // ViewRuleProcessOneMessage, the rule body will be executed. 
+		$key : recKey,               // Object. RawData.getKey() of current main region record.
+      	$value : recValue,           // RawDataValue. RawDataValue of current main region record.
+      	$cmap : resultMap,           // Map. a map for holding processed result which is to be added to view.
+      	$mapping : mapping,
+      	recVal.(path=="/MENTOR/mentor_f4108",$mainPath:path)
+    )
+then
+	LogUtil.getCoreLog().debug("product lot rule main region : {}",$mainPath);
+	List<String> regionList = new ArrayList<>();
+	List<String> rkList = new ArrayList<>();
+	regionList.add($mainPath);
+	rkList.add((String)$key);
+	
+	ProductLot productLot = new ProductLot();
+	// rawDataHelper
+	RawDataHelper rawDataHelper = RawDataHelper.getInstance();
+	RawDataValue rawDataValue = (RawDataValue)$value;
+    String mcu = rawDataHelper.getString(rawDataValue, "iomcu").trim();
+    if(!"TX01".equals(mcu) && !"LN01".equals(mcu)){
+    	return;
+    }
+    
+    String iolitmStr = rawDataHelper.getString($value, "iolitm") == null ? null : rawDataHelper.getString($value, "iolitm").trim();
+   
+    
+	RawDataBuilder rawDataBuilder = rawDataHelper
+    	.makeRawData("Unity_Product_SKU_Number__c", iolitmStr + "_MTR")
+        .put("Unity_Expiration__c", julianDateToGregorianDateString(rawDataHelper.getString($value, "iommej")))
+        .put($mainPath, $key);
+    if(StringUtils.isEmpty(rawDataHelper.getString($value, "ioupmj"))){
+        productLot.setUpmj("0");
+    }else{
+        productLot.setUpmj(rawDataHelper.getString($value, "ioupmj"));
+    }
+    productLot.setExternalID("");
+    // 与View匹配表F4102
+	constructItemBranch(rawDataHelper, (RawDataValue)$value,productLot, rawDataBuilder, regionList, rkList);
+	if(productLot.getExternalID() == null){
+		return;
+	}
+	// 与View匹配表F4801
+	constructWorkOrder(rawDataHelper, (RawDataValue)$value, productLot, rawDataBuilder, regionList, rkList);
+	if(productLot.getExternalID() == null){
+		return;
+	}
+	// 与View匹配主表F4108
+	constructProcessView(rawDataBuilder, $mainPath, (String)$key, productLot, rawDataHelper, (RawDataValue)$value, regionList, rkList, $cmap, $mapping);
+end
+
+
+// 与View匹配主表F4108
+function void constructProcessView(RawDataBuilder rawDataBuilder,String mainRegion, String key, ProductLot productLot, RawDataHelper rawDataHelper, RawDataValue value,
+								   List regionList, List rkList, Map cmap, Map mapping){
+	rawDataBuilder.put("Unity_Product_Mod_Code__c", null);
+	rawDataBuilder.put("Unity_Attribute__c", null);
+	rawDataBuilder.put("Unity_Value__c", null);
+	rawDataBuilder.put("LastModifiedDate", DateUtil.dateToString(new Date(), DateUtil.DATE_FORMAT_1));
+	rawDataBuilder.put("opco", "Mentor");
+	rawDataBuilder.put("sourceSystem", "JDE Mentor");
+	rawDataBuilder.put("changeDate", julianDateToGregorianDate(productLot.getUpmj()));
+	rawDataBuilder.put("Unity_DMI_External_Id_c_JDE_Mentor",  productLot.getExternalID());
+    // 
+    Object viewValue =  rawDataBuilder.toRawData();
+    String newViewKey = rawDataHelper.makeJsonObject("Unity_DMI_External_Id_c_JDE_Mentor", productLot.getExternalID()).toJsonString();
+	cmap.put(newViewKey, viewValue);
+	
+	String[] regions = (String[])regionList.toArray(new String[regionList.size()]);
+	String[] keys = (String[])rkList.toArray(new String[rkList.size()]);
+	ViewManager.getInstance().processMapping((Map<String,Map<String,Object>>)mapping, regions, keys, newViewKey);
+}
+
+// 与View匹配表F4102
+function void constructItemBranch(RawDataHelper rawDataHelper, RawDataValue value, ProductLot productLot, RawDataBuilder rawDataBuilder,
+										List regionList, List rkList){
+	if (rawDataHelper.getString(value, "ioitm") == null) {
+			productLot.setExternalID(null);
+	} else {
+		String regionPath = "/MENTOR/mentor_f4102";
+//匹配规则： ibitm==ioitm && ibmcu==iomcu  ibglpt=="FGO1"
+		String queryString = QueryHelper.buildCriteria("ibitm").is(rawDataHelper.getString(value, "ioitm"))
+			.and("ibmcu").is(rawDataHelper.getString(value, "iomcu"))
+			.and("ibglpt").is("FG01").toQueryString();
+		Entry<String, Map<String, Object>> emsMaterialType = AdfViewHelper.queryForMap(regionPath,queryString);
+		if(emsMaterialType != null ){
+		
+		String mcu = (String)(emsMaterialType.getValue().get("ibmcu"));
+        
+          //rawDataBuilder.put("MedConnect_Manufacturing_Location_R.MedConnect_MedConnect__Manufacturing_Site_Name__c", mcu);
+              //产地转化
+		if("TX01".equals(mcu)){
+					rawDataBuilder.put("MedConnect_Manufacturing_Location_R.MedConnect_MedConnect__Manufacturing_Site_Name__c", "Mentor Texas, Irving");
+		
+		}else{
+					rawDataBuilder.put("MedConnect_Manufacturing_Location_R.MedConnect_MedConnect__Manufacturing_Site_Name__c", "Mentor Lieden, Netherlands");
+		
+		}
+			rawDataBuilder.put("MedConnect__Type__c", emsMaterialType.getValue().get("ibglpt"));
+			regionList.add(regionPath);
+			rkList.add(emsMaterialType.getKey());
+			String upmj = (String)(emsMaterialType.getValue().get("ibupmj"));
+			if (StringUtils.isNotEmpty(upmj) && Long.valueOf(upmj) > Long.valueOf(productLot.getUpmj())){
+				productLot.setUpmj(upmj);
+			}
+			
+		}else{
+			productLot.setExternalID(null);
+		}
+	}
+
+}
+
+// 与View匹配表F4801
+function void constructWorkOrder(RawDataHelper rawDataHelper, RawDataValue value, ProductLot productLot, RawDataBuilder rawDataBuilder,
+										List regionList, List rkList){
+
+	
+	String iodoco = rawDataHelper.getString(value, "iodoco");
+	String regionPath = "/MENTOR/mentor_f4801";
+	String queryString = "";
+	//匹配规则为    wamcu==iomcu && wadoco==iodoco
+	if(iodoco == null || "".equals(iodoco)){
+
+		queryString = QueryHelper.buildCriteria("wamcu").is(rawDataHelper.getString(value, "iomcu"))
+		.and("wadoco").isNull().toQueryString();
+	}else {
+		queryString = QueryHelper.buildCriteria("wamcu").is(rawDataHelper.getString(value, "iomcu"))
+		.and("wadoco").is(rawDataHelper.getString(value, "iodoco")).toQueryString();
+	}
+
+	Entry<String, Map<String, Object>> emsMaterialType = AdfViewHelper.queryForMap(regionPath,queryString);
+	if(emsMaterialType != null ){
+		String walotn =(String)emsMaterialType.getValue().get("walotn");
+		if(walotn == null || walotn.trim().length() == 0)
+		{
+			productLot.setExternalID(null);
+			return;
+		}
+		rawDataBuilder.put("MedConnect__Lot_Number__c", walotn);
+		//生产日期格式转化
+		rawDataBuilder.put("Unity_Manufactured_Date__c", julianDateToGregorianDateString((String)(emsMaterialType.getValue().get("wastrx"))));
+		rawDataBuilder.put("MedConnect__Lot_Quantity_Affected__c", emsMaterialType.getValue().get("wasoqs"));
+		rawDataBuilder.put("MedConnect__Quantity_Attached_UOM__c", emsMaterialType.getValue().get("wauom"));
+		
+//设置ExteralID,即Unity_DMI_External_Id_c_JDE_Mentor，由walotn+ioitm+"Mentor_JDE Mentor"
+		productLot.setExternalID(String.valueOf(emsMaterialType.getValue().get("walotn")).trim() + "_" + rawDataHelper.getString(value, "ioitm") + "_" + "Mentor_JDE Mentor");
+		regionList.add(regionPath);
+		rkList.add(emsMaterialType.getKey());
+		String upmj = (String)(emsMaterialType.getValue().get("waupmj"));
+		if (StringUtils.isNotEmpty(upmj) && Long.valueOf(upmj) > Long.valueOf(productLot.getUpmj())){
+			productLot.setUpmj(upmj);
+		}
+	}else{
+		productLot.setExternalID(null);
+	}
+	
+}
+//日期格式转成long
+function long julianDateToGregorianDate(String julianDate){
+		if(StringUtils.isEmpty(julianDate)){
+			return 0;
+		}
+		//String julianDate="117001";
+		if(julianDate!=null&&julianDate.length()==6){
+			String yearBefore=julianDate.substring(0,1);
+			int yearBeforInt=Integer.parseInt(yearBefore)+19;
+			String yearAfter=julianDate.substring(1,3);
+			String year=yearBeforInt+yearAfter;
+			Calendar cal  = new GregorianCalendar();
+			cal.set(Calendar.YEAR,Integer.parseInt(year));
+			cal.set(Calendar.DAY_OF_YEAR,Integer.parseInt(julianDate.substring(3)));
+			
+			return cal.getTime().getTime();
+		}else{
+			return 0;
+		}
+}
+//日期格式转成String
+function String julianDateToGregorianDateString(String julianDate){
+		if(StringUtils.isEmpty(julianDate)){
+			return "00000000";
+		}
+		//String julianDate="117001";
+		if(julianDate!=null&&julianDate.length()==6){
+			String yearBefore=julianDate.substring(0,1);
+			int yearBeforInt=Integer.parseInt(yearBefore)+19;
+			String yearAfter=julianDate.substring(1,3);
+			String year=yearBeforInt+yearAfter;
+			Calendar cal  = new GregorianCalendar();
+			cal.set(Calendar.YEAR,Integer.parseInt(year));
+			cal.set(Calendar.DAY_OF_YEAR,Integer.parseInt(julianDate.substring(3)));
+			
+			int year1=cal.get(Calendar.YEAR);
+			int month=cal.get(Calendar.MONTH)+1;
+			int day=cal.get(Calendar.DAY_OF_MONTH);
+		
+			return ""+year1+StringUtils.leftPad(String.valueOf(month), 2, '0')+StringUtils.leftPad(String.valueOf(day), 2, '0');
+		}else{
+			return "00000000";
+		}
+}
+
+// 内部定义类ProductLot
+declare ProductLot
+	externalID : String
+	upmj : String
+end
